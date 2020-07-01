@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+    <h1>Blog index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Date</th>
+                <th>Author</th>
+                <th>image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td>{{ blog.id }}</td>
+                <td>{{ blog.Title }}</td>
+                <td>{{ blog.text | raw }}</td>
+                <td>{{ blog.date ? blog.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ blog.author }}</td>
+                <td><img class="image" src="{{ vich_uploader_asset(blog, 'imageFile') }}"  alt="imageName"/></td>
+                <td>
+                    <a href="{{ path('blog_show', {'id': blog.id}) }}">show</a>
+                    {% if app.user %}
+                    <a href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if app.user %}
+    <a href="{{ path('blog_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

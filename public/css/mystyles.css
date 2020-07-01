@@ -1,0 +1,13 @@
+.image{
+    width: 300px;
+}
+
+.image-home {
+    width: 350px !important;
+    height: 300px !important;
+}
+
+.siktir{
+    max-width: 1500px;
+    margin: auto;
+}

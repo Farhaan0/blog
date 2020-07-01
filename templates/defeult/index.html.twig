@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefeultController!{% endblock %}
+
+{% block body %}
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading -->
+    <h1 class="my-4">Welkom bij Blogs.nl
+        <small>De nummer 1 blogs</small>
+    </h1>
+    <div class="row">
+        {% for blog in blog %}
+
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img class="image-home" src="{{ vich_uploader_asset(blog, 'imageFile') }}" alt="imageName"/>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <h4 class="card-title">{{ blog.title }}</h4>
+                        </h4>
+                        <p class="card-text">{{ blog.text | raw }}</p>
+                        <div class="btn-group">
+                            <button type="button" onclick="window.location.href='{{ path('blog_show', {'id': blog.id}) }}'" class="btn btn-sm btn-outline-secondary">Verder lezen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}
